@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:8080';
 
 async function criarProduto(nome, descricao, imagens, preco) {
   try {
-    const response = await fetch(`${BASE_URL}/product`, {
+    const response = await fetch(`${BASE_URL}/products/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ async function criarProduto(nome, descricao, imagens, preco) {
 
 async function listarTodosProdutos() {
   try {
-    const response = await fetch(`${BASE_URL}/product`, {
+    const response = await fetch(`${BASE_URL}/products/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ async function listarTodosProdutos() {
 
 async function buscarProdutoPorId(id) {
   try {
-    const response = await fetch(`${BASE_URL}/product/${id}`, {
+    const response = await fetch(`${BASE_URL}/products/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ async function buscarProdutoPorId(id) {
 
 async function atualizarProduto(id, nome, descricao, imagens, preco) {
   try {
-    const response = await fetch(`${BASE_URL}/product/${id}`, {
+    const response = await fetch(`${BASE_URL}/products/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ async function atualizarProduto(id, nome, descricao, imagens, preco) {
 
 async function deletarProduto(id) {
   try {
-    const response = await fetch(`${BASE_URL}/product/${id}`, {
+    const response = await fetch(`${BASE_URL}/products/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
