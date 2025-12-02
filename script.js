@@ -3,37 +3,9 @@ const BASE_URL = 'http://localhost:8080';
 
 /* ===== FUNÇÕES DA API ===== */
 
-async function criarProduto(nome, descricao, imagens, preco) {
-  try {
-    const response = await fetch(`${BASE_URL}/products/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: nome,
-        description: descricao,
-        images: imagens,
-        price: preco
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status}`);
-    }
-
-    const resultado = await response.json();
-    console.log('Produto criado:', resultado);
-    return resultado;
-  } catch (erro) {
-    console.error('Erro ao criar produto:', erro);
-    throw erro;
-  }
-}
-
 async function listarTodosProdutos() {
   try {
-    const response = await fetch(`${BASE_URL}/products/`, {
+    const response = await fetch(`${BASE_URL}/products`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +27,7 @@ async function listarTodosProdutos() {
 
 async function buscarProdutoPorId(id) {
   try {
-    const response = await fetch(`${BASE_URL}/products/${id}`, {
+    const response = await fetch(`${BASE_URL}/product/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -76,12 +48,13 @@ async function buscarProdutoPorId(id) {
 
 async function atualizarProduto(id, nome, descricao, imagens, preco) {
   try {
-    const response = await fetch(`${BASE_URL}/products/${id}`, {
+    const response = await fetch(`${BASE_URL}/product`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        id: id,
         name: nome,
         description: descricao,
         images: imagens,
@@ -104,7 +77,7 @@ async function atualizarProduto(id, nome, descricao, imagens, preco) {
 
 async function deletarProduto(id) {
   try {
-    const response = await fetch(`${BASE_URL}/products/${id}`, {
+    const response = await fetch(`${BASE_URL}/product/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -120,50 +93,6 @@ async function deletarProduto(id) {
   } catch (erro) {
     console.error('Erro ao deletar produto:', erro);
     throw erro;
-  }
-}
-
-/* ===== CADASTRO DE PRODUTO ===== */
-function inicializarCadastro() {
-  const form = document.getElementById("formCadastroProduto");
-  
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const nome = document.getElementById("produtoNome").value;
-      const descricao = document.getElementById("produtoDesc").value;
-      const preco = parseFloat(document.getElementById("produtoPreco").value);
-      const imagemUrl = document.getElementById("produtoImg").value;
-      
-      // Adicionar loading no botão
-      const btnSubmit = form.querySelector('button[type="submit"]');
-      const textoOriginal = btnSubmit.innerHTML;
-      btnSubmit.innerHTML = '<span>⏳</span> Salvando...';
-      btnSubmit.disabled = true;
-      
-      try {
-        await criarProduto(nome, descricao, imagemUrl ? [imagemUrl] : [], preco);
-        
-        // Mostrar mensagem de sucesso
-        mostrarNotificacao('✅ Produto cadastrado com sucesso!', 'success');
-        
-        form.reset();
-        
-        // Redirecionar após 1 segundo
-        setTimeout(() => {
-          window.location.href = "produtos.html";
-        }, 1000);
-        
-      } catch (erro) {
-        mostrarNotificacao('❌ Erro ao cadastrar produto! Verifique se o backend está rodando.', 'error');
-        console.error(erro);
-        
-        // Restaurar botão
-        btnSubmit.innerHTML = textoOriginal;
-        btnSubmit.disabled = false;
-      }
-    });
   }
 }
 
@@ -326,7 +255,7 @@ async function editarProdutoModal(id) {
       btnSubmit.disabled = true;
       
       try {
-        await atualizarProduto(id, nome, descricao, imagemUrl ? [imagemUrl] : [], preco);
+        await atualizarProduto(id, nome, descricao, imagemUrl ? [imagemUrl] : ['https://images.tcdn.com.br/img/img_prod/1199459/kit_para_queda_de_cabelo_251_1_894d3b2258de8ad046d66ad981b68e71.jpeg'], preco);
         mostrarNotificacao('✅ Produto atualizado com sucesso!', 'success');
         fecharModal();
         carregarProdutos();

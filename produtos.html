@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produtos - JavaHair</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://em-content.zobj.net/source/microsoft-teams/363/scissors_2702-fe0f.png" type="image/png">
+  <link rel="icon" href="https://em-content.zobj.net/source/microsoft-teams/363/scissors_2702-fe0f.png"
+    type="image/png">
 </head>
+
 <body>
 
-<header>Produtos JavaHair</header>
-
-<div class="container">
-  <div style="text-align: center; margin-bottom: 20px;">
-    <a href="cadastro.html" style="text-decoration: none;">
-      <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">➕ Cadastrar Novo Produto</button>
-    </a>
-    <a href="index.html" style="text-decoration: none; margin-left: 10px;">
-      <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">🏠 Voltar ao Início</button>
-    </a>
-  </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>✨ JavaHair</h1>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Início</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="cadastro.html">Cadastrar</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="produto-lista" id="listaProdutos">
     <!-- Os produtos serão carregados aqui via JavaScript da API -->
     <p style="text-align: center;">Carregando produtos...</p>
   </div>
-</div>
 
-<!-- Modal para mostrar detalhes do produto -->
-<div class="modal-bg" id="modalBg" style="display: none;">
-  <div class="modal">
-    <span class="fechar" onclick="fecharModal()" style="cursor: pointer; float: right; font-size: 28px; font-weight: bold;">&times;</span>
-    <img id="modalImg" alt="Imagem do Produto" style="max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 8px;">
-    <h2 id="modalNome"></h2>
-    <p id="modalDesc"></p>
-    <h3 id="modalPreco"></h3>
-    <button onclick="fecharModal()" style="margin-top: 15px;">Fechar</button>
+  <!-- Modal para mostrar detalhes do produto -->
+  <div class="modal-bg" id="modalBg" style="display: none;">
+    <div class="modal">
+      <span class="fechar" onclick="fecharModal()"
+        style="cursor: pointer; float: right; font-size: 28px; font-weight: bold;">&times;</span>
+      <img id="modalImg" alt="Imagem do Produto"
+        style="max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 8px;">
+      <h2 id="modalNome"></h2>
+      <p id="modalDesc"></p>
+      <h3 id="modalPreco"></h3>
+      <button onclick="fecharModal()" style="margin-top: 15px;">Fechar</button>
+    </div>
   </div>
-</div>
 
-<script src="script.js"></script>
- <footer style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-top: 50px; text-align: center; color: white; padding: 30px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1);">
+  <script src="script.js"></script>
+  <footer
+    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-top: 50px; text-align: center; color: white; padding: 30px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1);">
     <p style="font-size: 0.9em; margin-bottom: 8px; opacity: 0.9;">Desenvolvido por:</p>
-    <p style="font-weight: 700; font-size: 1.2em; letter-spacing: 1px;">Alex Constantino • Caio David • Felipe Barreto</p>
+    <p style="font-weight: 700; font-size: 1.2em; letter-spacing: 1px;">Alex Constantino • Caio David • Felipe Barreto
+    </p>
     <p style="font-size: 0.85em; margin-top: 12px; opacity: 0.85;">© 2025 JavaHair - Todos os direitos reservados</p>
-</footer>
+  </footer>
 </body>
+
 </html>
