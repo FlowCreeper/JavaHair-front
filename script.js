@@ -341,6 +341,5 @@ function mostrarNotificacao(mensagem, tipo) {
 
 /* ===== INICIALIZAÇÃO ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  inicializarCadastro();
   carregarProdutos();
 });
